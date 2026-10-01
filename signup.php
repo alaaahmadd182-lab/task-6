@@ -6,7 +6,7 @@
     <title>Sign Up</title>
 </head>
 <body>
-    <form action="signup.php" method="POST">
+    <form id="signup_form" action="signup.php" method="POST">
         <label for="first_name">First Name:</label>
         <input type="text" id="first_name" name="first_name" required>
         <br>
@@ -30,5 +30,6 @@
         <br>
         <button type="submit">Sign Up</button>
     </form>
+    <script src="script.js"></script>
 </body>
 </html>
