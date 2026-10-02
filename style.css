@@ -54,3 +54,18 @@ button:hover {
 a {
     margin-top: 15px;
 }
+.logout-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    margin-top: 15px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    background-color: #555;
+}

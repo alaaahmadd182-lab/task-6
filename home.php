@@ -21,7 +21,7 @@ if (!isset($_SESSION["user_id"])) {//check if there is a logged in user id in th
 <body>
     <h1>Welcome, <?= htmlspecialchars($_SESSION["user_name"]) ?></h1>
     <p>You logged in successfully</p>
-    <a href="logout.php">Logout</a>
+    <a href="logout.php" class="logout-btn">Logout</a>
 </body>
 
 </html>
