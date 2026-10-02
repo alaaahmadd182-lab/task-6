@@ -15,6 +15,7 @@ if (!isset($_SESSION["user_id"])) {//check if there is a logged in user id in th
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
