@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "database.php";
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = trim($_POST["email"]);
@@ -22,10 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     
     if ($user && password_verify($password, $user["password"])) {
-        echo "Login successful!";
+        $_SESSION["user_id"] = $user["id"];
+        $_SESSION["user_name"] = $user["username"];
+        header("Location: home.php");
+        exit;
     } else {
-        $errors[] = "Invalid email or password is wrong";
-    }}
+        $errors[] = "Invalid email or password";
+    }
+    }
 }
 ?>
 <!DOCTYPE html>
