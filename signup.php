@@ -4,7 +4,7 @@ require_once "database.php";
 if ($_SERVER["REQUEST_METHOD"] === "POST") { 
     $first_name = trim($_POST["first_name"]); 
     $last_name = trim($_POST["last_name"]); 
-    $user_name = trim($_POST["user_name"]); 
+    $username = trim($_POST["username"]); 
     $email = trim($_POST["email"]); 
     $password = $_POST["password"]; 
     $age = $_POST["age"]; 
@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if (
         empty($first_name) || 
         empty($last_name) || 
-        empty($user_name) || 
+        empty($username) || 
         empty($email) || 
         empty($password) || 
         empty($age)
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $errors[] = "Please fill in all required fields."; 
     } 
     // Username cannot contain spaces
-    if (preg_match("/\s/", $user_name)) { 
+    if (preg_match("/\s/", $username)) { 
         $errors[] = "Username cannot contain spaces."; 
     } 
     // Validate email
@@ -36,10 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Check whether username or email already exists
     if (empty($errors)) { 
         $sql = "SELECT id FROM users 
-                WHERE username = :user_name OR email = :email"; 
+                WHERE username = :username OR email = :email"; 
         $stmt = $pdo->prepare($sql); 
         $stmt->execute([ 
-            "user_name" => $user_name, 
+            "username" => $username, 
             "email" => $email 
         ]); 
         $existing_user = $stmt->fetch(); 
@@ -55,12 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         $sql = "INSERT INTO users 
                 (first_name, last_name, username, email, password, age, address) 
                 VALUES 
-                (:first_name, :last_name, :user_name, :email, :password, :age, :address)";
+                (:first_name, :last_name, :username, :email, :password, :age, :address)";
         $stmt = $pdo->prepare($sql); 
         $stmt->execute([ 
             "first_name" => $first_name, 
             "last_name" => $last_name, 
-            "user_name" => $user_name, 
+            "username" => $username, 
             "email" => $email, 
             "password" => $hashed_password, 
             "age" => $age, 
@@ -98,8 +98,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <label for="last_name">Last Name:</label>
         <input type="text" id="last_name" name="last_name" required>
         <br>
-        <label for="user_name">User Name:</label>
-        <input type="text" id="user_name" name="user_name" required>
+        <label for="username">User Name:</label>
+        <input type="text" id="username" name="username" required>
         <br>
         <label for="email">Email:</label>
         <input type="email" id="email" name="email" required> 
